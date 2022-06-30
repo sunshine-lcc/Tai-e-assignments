@@ -78,6 +78,13 @@ public abstract class Solver<Node, Fact> {
 
     protected void initializeForward(CFG<Node> cfg, DataflowResult<Node, Fact> result) {
         // TODO - finish me
+        result.setOutFact(cfg.getEntry(), this.analysis.newBoundaryFact(cfg));
+        for (Node n : cfg) {
+            if (n == cfg.getEntry()) {
+                continue;
+            }
+            result.setOutFact(n, this.analysis.newInitialFact());
+        }
     }
 
     protected void initializeBackward(CFG<Node> cfg, DataflowResult<Node, Fact> result) {
