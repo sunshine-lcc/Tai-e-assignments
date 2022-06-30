@@ -170,6 +170,9 @@ public class ConstantPropagation extends
                     case "<<":
                         ret = Value.makeConstant(op1_int << op2_int);
                         break;
+                    case ">>>":
+                        ret = Value.makeConstant(op1_int >>> op2_int);
+                        break;
                     case "==":
                         if (op1_int == op2_int) {
                             ret = Value.makeConstant(1);
